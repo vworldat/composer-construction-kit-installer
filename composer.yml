@@ -17,8 +17,9 @@ autoload:
 minimum-stability: alpha
 
 require:
-    php:                '>=5.3.3'
-    symfony/yaml:       '~2.3'
+    php:                    '>=5.3.3'
+    composer-plugin-api:    '1.0.0'
+    symfony/yaml:           '~2.3'
 
 require-dev:
     composer/composer:  '~1.0.0-alpha9'    
