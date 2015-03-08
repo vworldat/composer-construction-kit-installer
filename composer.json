@@ -1,0 +1,32 @@
+{
+    "name": "c33s/composer-construction-kit-installer",
+    "type": "composer-plugin",
+    "description": "Composer plugin to install C33sConstructionKitBundle Symfony packages automatically",
+    "homepage": "https://github.com/vworldat/composer-construction-kit-installer",
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "David",
+            "email": "office@web-emerge.com",
+            "homepage": "http://web-emerge.com/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "C33s\\ConstructionKit\\": "src"
+        }
+    },
+    "minimum-stability": "alpha",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/yaml": "~2.3"
+    },
+    "require-dev": {
+        "composer/composer": "~1.0.0-alpha9"
+    },
+    "extra": {
+        "class": "C33s\\ConstructionKit\\ConstructionKitPlugin"
+    }
+}
