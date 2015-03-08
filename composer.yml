@@ -1,8 +1,8 @@
 name:           c33s/composer-construction-kit-installer
 type:           composer-plugin
-description:    Composer plugin to install C33sConstructionKitBundle Symfony packages automatically
+description:    Composer plugin to automatically install C33sConstructionKitBundle Symfony packages
 #keywords: []
-homepage: "https://github.com/vworldat/composer-construction-kit-installer"
+homepage:       "https://github.com/vworldat/composer-construction-kit-installer"
 license:       ["MIT"]
 
 authors:
@@ -17,9 +17,12 @@ autoload:
 minimum-stability: alpha
 
 require:
-    php:                    '>=5.3.3'
-    composer-plugin-api:    '1.0.0'
-    symfony/yaml:           '~2.3'
+    php:                            '>=5.3.3'
+    composer-plugin-api:            '1.0.0'
+    
+    c33s/construction-kit-bundle:   'dev-master'
+    sensio/distribution-bundle:     '~3.0'
+    symfony/yaml:                   '~2.3'
 
 require-dev:
     composer/composer:  '~1.0.0-alpha9'    

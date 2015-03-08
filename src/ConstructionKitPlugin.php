@@ -10,7 +10,24 @@ class ConstructionKitPlugin implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
-        $installer = new ConstructionKitInstaller($io, $composer);
-        $composer->getInstallationManager()->addInstaller($installer);
+        $rootPackage = $composer->getPackage();
+        if (isset($rootPackage))
+        {
+            // Ensure we get the root package rather than its alias.
+            while ($rootPackage instanceof AliasPackage)
+            {
+                $rootPackage = $rootPackage->getAliasOf();
+            }
+
+            // Make sure the root package can override the available scripts.
+            if (method_exists($rootPackage, 'setScripts'))
+            {
+                $scripts = $rootPackage->getScripts();
+                // Act on the "post-autoload-dump" command so that we can act on all
+                // the installed packages.
+                $scripts['post-autoload-dump']['c33s-construction-kit-installer'] = 'C33s\\ConstructionKit\\ConstructionKitScriptHandler::postAutoloadDump';
+                $rootPackage->setScripts($scripts);
+            }
+        }
     }
 }
