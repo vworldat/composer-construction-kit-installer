@@ -19,7 +19,6 @@ require:
     php:                            '>=5.4.0'
     composer-plugin-api:            '1.0.0'
 
-    c33s/construction-kit-bundle:   '~0.1.0'
     sensio/distribution-bundle:     '~3.0'
     symfony/yaml:                   '~2.3'
 
