@@ -5,6 +5,7 @@ namespace C33s\ConstructionKit;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
+use Composer\Package\AliasPackage;
 
 class ConstructionKitPlugin implements PluginInterface
 {
