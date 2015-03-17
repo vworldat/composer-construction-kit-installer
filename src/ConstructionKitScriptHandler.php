@@ -119,7 +119,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
             return;
         }
 
-        static::executeCommandSafely($event, $consoleDir, 'c33s:construction-kit:refresh-config --add-config c33s_construction_kit.composer', $options['process-timeout']);
+        static::executeCommandSafely($event, $consoleDir, 'construction-kit:refresh-config --add-config c33s_construction_kit.composer', $options['process-timeout']);
     }
 
     protected static function executeUpdateBlocks(CommandEvent $event)
@@ -140,7 +140,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
             $noAutoInstall = ' --no-auto-install';
         }
 
-        static::executeCommandSafely($event, $consoleDir, 'c33s:construction-kit:update-blocks'.$noAutoInstall, $options['process-timeout']);
+        static::executeCommandSafely($event, $consoleDir, 'construction-kit:update-blocks'.$noAutoInstall, $options['process-timeout']);
     }
 
     /**
