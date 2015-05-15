@@ -26,7 +26,7 @@ class ConstructionKitPlugin implements PluginInterface
                 $scripts = $rootPackage->getScripts();
                 // Act on the "post-autoload-dump" command so that we can act on all
                 // the installed packages.
-                $scripts['post-autoload-dump']['c33s-construction-kit-installer'] = 'C33s\\ConstructionKit\\ConstructionKitScriptHandler::postAutoloadDump';
+                $scripts['post-update-cmd']['c33s-construction-kit-installer'] = 'C33s\\ConstructionKit\\ConstructionKitScriptHandler::refreshBuildingBlocks';
                 $rootPackage->setScripts($scripts);
             }
         }

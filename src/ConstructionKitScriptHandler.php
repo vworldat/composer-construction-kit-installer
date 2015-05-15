@@ -35,7 +35,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
      *
      * @param $event CommandEvent A instance
      */
-    public static function postAutoloadDump(CommandEvent $event)
+    public static function refreshBuildingBlocks(CommandEvent $event)
     {
         $options = self::getOptions($event);
         $io = $event->getIO();
