@@ -21,7 +21,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
      * a composer.json and set new options, making them immediately available
      * to forthcoming listeners.
      */
-    private static $options = array(
+    protected static $options = array(
         'symfony-app-dir' => 'app',
         'symfony-web-dir' => 'web',
         'symfony-assets-install' => 'hard',
@@ -37,7 +37,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
      */
     public static function refreshBuildingBlocks(CommandEvent $event)
     {
-        $options = self::getOptions($event);
+        $options = static::getOptions($event);
         $io = $event->getIO();
 
         if($options['c33s-construction-kit-disabled'])
@@ -111,7 +111,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
     {
         $event->getIO()->write('<info>[C33sConstructionKitBundle] Refreshing config files, splitting into groups</info>');
 
-        $options = self::getOptions($event);
+        $options = static::getOptions($event);
         $consoleDir = self::getConsoleDir($event, 'refresh the construction kit config');
 
         if (null === $consoleDir)
@@ -126,7 +126,7 @@ class ConstructionKitScriptHandler extends ScriptHandler
     {
         $event->getIO()->write('<info>[C33sConstructionKitBundle] Updating building blocks, enabling new blocks in Symfony project</info>');
 
-        $options = self::getOptions($event);
+        $options = static::getOptions($event);
         $consoleDir = self::getConsoleDir($event, 'validate the building blocks list');
 
         if (null === $consoleDir)
@@ -222,16 +222,5 @@ class ConstructionKitScriptHandler extends ScriptHandler
 
             die();
         }
-    }
-
-    protected static function getOptions(CommandEvent $event)
-    {
-        $options = array_merge(self::$options, $event->getComposer()->getPackage()->getExtra());
-
-        $options['symfony-assets-install'] = getenv('SYMFONY_ASSETS_INSTALL') ?: $options['symfony-assets-install'];
-
-        $options['process-timeout'] = $event->getComposer()->getConfig()->get('process-timeout');
-
-        return $options;
     }
 }
