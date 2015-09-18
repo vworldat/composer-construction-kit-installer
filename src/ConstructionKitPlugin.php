@@ -4,29 +4,30 @@ namespace C33s\ConstructionKit;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
-use Composer\Plugin\PluginInterface;
 use Composer\Package\AliasPackage;
+use Composer\Plugin\PluginInterface;
 
 class ConstructionKitPlugin implements PluginInterface
 {
+    /**
+     * Apply plugin modifications to composer.
+     *
+     * @param Composer    $composer
+     * @param IOInterface $io
+     */
     public function activate(Composer $composer, IOInterface $io)
     {
         $rootPackage = $composer->getPackage();
-        if (isset($rootPackage))
-        {
+        if (isset($rootPackage)) {
             // Ensure we get the root package rather than its alias.
-            while ($rootPackage instanceof AliasPackage)
-            {
+            while ($rootPackage instanceof AliasPackage) {
                 $rootPackage = $rootPackage->getAliasOf();
             }
 
             // Make sure the root package can override the available scripts.
-            if (method_exists($rootPackage, 'setScripts'))
-            {
+            if (method_exists($rootPackage, 'setScripts')) {
                 $scripts = $rootPackage->getScripts();
-                // Act on the "post-autoload-dump" command so that we can act on all
-                // the installed packages.
-                $scripts['post-update-cmd']['c33s-construction-kit-installer'] = 'C33s\\ConstructionKit\\ConstructionKitScriptHandler::refreshBuildingBlocks';
+                $scripts['post-update-cmd']['c33s-construction-kit-installer'] = 'C33s\ConstructionKit\ConstructionKitBuildingBlocksDetector::refreshBuildingBlocks';
                 $rootPackage->setScripts($scripts);
             }
         }
